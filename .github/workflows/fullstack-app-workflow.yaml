@@ -9,15 +9,14 @@ on:
     branches:
       - main
 
-  # Scheduled trigger at 5:00 AM UTC, Monday through Friday
   schedule:
     - cron: '0 0 * * 6'
 
 env:
-  NODE_VERSION: 18
+  NODE_VERSION: 18.x
 
 jobs:
-  build:
+  install-build-test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -46,3 +45,13 @@ jobs:
         run: |
           "Hello, Petyo. You pushed to fullstack-app-repo at $(date)."."
 
+#    stage_deploy:
+#      runs_on: ubuntu-latest
+#      needs: install-build-test
+#      environment:
+#        name: staging
+
+#      steps:
+#        - name: Deploy to Staging
+#          run: |
+#            echo "Deployed to staging environment"
